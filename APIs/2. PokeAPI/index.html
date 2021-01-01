@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top d-none" src="" alt="Card image cap" data-shiny-url="">
+            <div class="card-body">
+                <h5 class="card-title" style=" text-transform: capitalize;">Lorepokemon</h5>
+                <button class="btn btn-success">Change to Shiny</button>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select one pokemon</option>
+            <option value="pikachu">Pikachu</option>
+            <option value="charmander">Charmander</option>
+            <option value="luxio">Luxio</option>
+            <option value="ralts">Ralts</option>
+            <option value="xatu">Xatu</option>
+            <option value="ekans">Ekans</option>
+            <option value="ariados">Ariados</option>
+        </select>
+    </div>
+    <div class="container">
+        <label for="add-poke"> Want one that is not on the list?</label>
+        <input name="add-poke" id="add-poke" type="text" placeholder="e.g. Sceptile">
+    </div>
+    <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
+    <script>
+        const P = new Pokedex.Pokedex()
+        const button = document.querySelector('.btn');
+        const select = document.querySelector('select');
+        const img = document.querySelector('.card-img-top');
+        const input = document.querySelector('#add-poke');
+
+
+        input.addEventListener('change', addNewPokemon);
+        button.addEventListener('click', changeToShiny);
+        select.addEventListener('change', getNewPokemon);
+
+        function addNewPokemon(pokemon) {
+            P.getPokemonByName(pokemon.target.value.toLowerCase())
+                .then(response => updatePokemon(response))
+                .catch(error => errorFound(error))
+        }
+
+        function errorFound(error) {
+            alert("Please, enter a real pokemon");
+            input.value = "";
+        }
+
+        function getNewPokemon(event) {
+            P.getPokemonByName(event.target.value)
+                .then(response => updatePokemon(response))
+        };
+        function updatePokemon(response) {
+            input.value = "";
+            if (img.classList.contains('d-none')) {
+                img.classList.remove('d-none');
+            }
+            if(button.hasAttribute("disabled")) {
+                button.removeAttribute("disabled");
+            }
+            img.setAttribute("src", response["sprites"]["front_default"]);
+            const name = document.querySelector('.card-title');
+            name.textContent = response["name"];
+            window.shinyUrl = response["sprites"]["front_shiny"];
+        };
+        function changeToShiny() {
+            img.setAttribute("src", shinyUrl);
+            button.setAttribute("disabled", "");
+        };
+
+
+        // function getNewPokemon(event) {
+        //     const url = "https://pokeapi.co/api/v2/pokemon/" + event.target.value;
+        //     fetch(url)
+        //         .then(response => response.json())
+        //         .then(data => updatePokemon(data))
+        // };
+        // function updatePokemon(response) {
+        //     if (img.classList.contains('d-none')) {
+        //         img.classList.remove('d-none');
+        //     }
+        //     img.setAttribute("src", response["sprites"]["front_default"]);
+        //     const name = document.querySelector('.card-title');
+        //     name.textContent = response["name"];
+        //     window.shinyUrl = response["sprites"]["front_shiny"];
+        // };
+        // function changeToShiny() {
+        //     img.setAttribute("src", shinyUrl);
+        //     button.setAttribute("disabled", "");
+        // };
+    </script>
+    </body>
+    
+    </html>
