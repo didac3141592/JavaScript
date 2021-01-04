@@ -56,8 +56,6 @@ function gameOver() {
 
 }
 
-
-
 BUTTON.addEventListener('click', startGame);
 
 startGame();
