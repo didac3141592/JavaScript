@@ -41,6 +41,7 @@ function resetStatus() {
     game = [];
     letters = [];
     guessesLeft = GUESSES;
+    ABCDE.textContent = ""
 };
 
 function endGame() {
