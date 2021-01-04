@@ -47,14 +47,12 @@ function resetStatus() {
 function endGame() {
     WIN.play();
     printWin();
-    
-}
+};
 
 function gameOver() {
     LOSE.play();
     printLose();
-
-}
+};
 
 BUTTON.addEventListener('click', startGame);
 
