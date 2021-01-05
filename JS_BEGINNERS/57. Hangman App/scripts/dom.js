@@ -12,11 +12,11 @@ function printGame() {
     game.forEach(character => {
         WORD.textContent += character;
     });
-}
+};
 
 function printStatus() {
     ATTEMPTS.textContent = `You have ${guessesLeft} guesses left`;
-}
+};
 
 function printWin() {
     WORD.textContent = "Congratulations!"
@@ -24,7 +24,7 @@ function printWin() {
     puzzle.forEach(character => {
         ATTEMPTS.textContent += character.toUpperCase();
     });
-}
+};
 
 function printLose() {
     WORD.textContent = "Tough luck! You'll do better next time!"
@@ -32,16 +32,17 @@ function printLose() {
     puzzle.forEach(character => {
         ATTEMPTS.textContent += character.toUpperCase();
     });
-}
+};
 
 const PREVIOUS = document.createElement('p');
 const ABCDE = document.createElement('p');
-ABCDE.style.margin = "4rem"
-ABCDE.style.textAlign = "center"
-ABCDE.style.letterSpacing = "2.5rem"
-PREVIOUS.textContent = "Previous attempts: "
-PREVIOUS.style.margin = "4rem"
-PREVIOUS.style.textAlign = "center"
+
+ABCDE.style.margin = "4rem";
+ABCDE.style.textAlign = "center";
+ABCDE.style.letterSpacing = "2.5rem";
+PREVIOUS.textContent = "Previous attempts: ";
+PREVIOUS.style.margin = "4rem";
+PREVIOUS.style.textAlign = "center";
 HEADER.appendChild(PREVIOUS);
 HEADER.appendChild(ABCDE);
 

@@ -15,7 +15,6 @@ const getMovie = async (wordCount) => {
         const INDEX = Math.floor((Math.random() * 100) + 1);
         movie = LIST[INDEX]["title"];
         words = movie.split(" ");
-        console.log(words);
     } while (words.length != wordCount)
     return movie;
 };

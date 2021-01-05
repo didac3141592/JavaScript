@@ -1,5 +1,4 @@
 
-
 const startGame = async () => {
     resetStatus();
     const MOVIE = await getMovie();

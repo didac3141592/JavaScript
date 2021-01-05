@@ -25,10 +25,13 @@ function goodGuess(character) {
     if(game.indexOf("*") == -1) {
         endGame();
     }
-   
-}
+};
 
 function updateAttempts(character) {
+    ABCDE.textContent = "";
     letters.push(character);
-    ABCDE.textContent += character;
-}
+    letters.sort();
+    letters.forEach(letter => {
+        ABCDE.textContent += letter.toUpperCase();
+    });
+};
