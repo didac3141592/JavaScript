@@ -4,7 +4,6 @@ const startGame = async () => {
     const MOVIE = await getMovie();
     puzzle = MOVIE.toLowerCase().split("");
     setGame(puzzle);
-    console.log(puzzle);
 };
 
 window.addEventListener('keypress', playGame);
