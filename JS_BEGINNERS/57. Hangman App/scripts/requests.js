@@ -8,11 +8,11 @@ const getMovie = async (wordCount) => {
     const DATA = await (RAW_DATA.text());
     const LIST = await JSON.parse(DATA);
     if(!wordCount) {
-        const INDEX = Math.floor((Math.random() * 100) + 1);
+        const INDEX = Math.floor((Math.random() * 100));
         return movie = LIST[INDEX]["title"];
     }
     do {
-        const INDEX = Math.floor((Math.random() * 100) + 1);
+        const INDEX = Math.floor((Math.random() * 100));
         movie = LIST[INDEX]["title"];
         words = movie.split(" ");
     } while (words.length != wordCount)
